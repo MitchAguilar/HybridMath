@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-navbar color="grade">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Calculadora</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-grid>
+
+    <ion-row>
+      <ion-item>
+        <ion-textarea placeholder="Escriba una formula. p.ej: 1.2 * (2 + 4.5)" [(ngModel)]="display"></ion-textarea>
+      </ion-item>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-segment [(ngModel)]="icons" color="secondary">
+          <ion-segment-button *ngFor="let item of listCharsBase" [value]="item.value" (click)="addCharDisplay(item.value)">
+            {{ item.show }}
+          </ion-segment-button>
+        </ion-segment>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-segment [(ngModel)]="icons" color="secondary">
+          <ion-segment-button *ngFor="let item of listCharsAlgebra" [value]="item.value" (click)="addCharDisplay(item.value)">
+            {{ item.show }}
+          </ion-segment-button>
+        </ion-segment>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-fab bottom right>
+    <button ion-fab>Borrar</button>
+    <ion-fab-list side="top">
+      <button ion-fab (click)="cleanDisplay()">
+        <<<
+      </button>
+    </ion-fab-list>
+    <ion-fab-list side="left">
+      <button ion-fab (click)="quitLast()">
+        <
+      </button>
+    </ion-fab-list>
+  </ion-fab>
+</ion-content>
