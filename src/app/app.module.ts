@@ -11,6 +11,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { CalcPage } from "../pages/calc/calc";
 import { CharactersPage } from "../pages/characters/characters";
+import { MathJsProvider } from '../providers/math-js/math-js';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { CharactersPage } from "../pages/characters/characters";
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: ErrorHandler, useClass: IonicErrorHandler }
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    MathJsProvider
   ]
 })
 export class AppModule { }

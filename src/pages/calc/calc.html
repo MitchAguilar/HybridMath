@@ -12,13 +12,22 @@
 
     <ion-row>
       <ion-item>
-        <ion-textarea placeholder="Escriba una formula. p.ej: 1.2 * (2 + 4.5)" [(ngModel)]="display"></ion-textarea>
+        <ion-textarea #inputdisplay placeholder="Escriba una formula. p.ej: 1.2 * (2 + 4.5)" [(ngModel)]="display" autofocus></ion-textarea>
       </ion-item>
     </ion-row>
 
     <ion-row>
       <ion-col>
-        <ion-segment [(ngModel)]="icons" color="secondary">
+        <ion-segment [(ngModel)]="modelNums" color="secondary">
+          <ion-segment-button *ngFor="let item of listCharsNum" [value]="item.value" (click)="addCharDisplay(item.value)">
+            {{ item.show }}
+          </ion-segment-button>
+        </ion-segment>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-segment [(ngModel)]="modelBase" color="secondary">
           <ion-segment-button *ngFor="let item of listCharsBase" [value]="item.value" (click)="addCharDisplay(item.value)">
             {{ item.show }}
           </ion-segment-button>
@@ -27,7 +36,7 @@
     </ion-row>
     <ion-row>
       <ion-col>
-        <ion-segment [(ngModel)]="icons" color="secondary">
+        <ion-segment [(ngModel)]="modelAlg" color="secondary">
           <ion-segment-button *ngFor="let item of listCharsAlgebra" [value]="item.value" (click)="addCharDisplay(item.value)">
             {{ item.show }}
           </ion-segment-button>
@@ -35,6 +44,18 @@
       </ion-col>
     </ion-row>
   </ion-grid>
+
+  <ion-card>
+
+    <ion-card-header>
+      Resultado
+    </ion-card-header>
+
+    <ion-card-content>
+      <div>{{ result }}</div>      
+    </ion-card-content>
+
+  </ion-card>
 
   <ion-fab bottom right>
     <button ion-fab>Borrar</button>
