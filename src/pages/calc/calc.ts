@@ -17,6 +17,9 @@ export class CalcPage {
   // Model options
   resultRound: string = ''  // Muestra el resultado del redondeo
   modelRound: string = ''  // Modelo que almacena el valor de cambio del 'ion-range'
+  //
+  resultSimpli: string = '' // Muestra la ecuacion simplificada
+  toggleSimpli: boolean = false
 
   // Models segment
   modelNums: string = ''
@@ -35,14 +38,22 @@ export class CalcPage {
     this._display = value;
 
     try {
+      // Evalua la expression y muetra resultado
       this.result = this.mathjs.eval(this.display) as string;
     } catch (e) { }
+
+    try {
+      // Simplifica la expression
+      if (this.toggleSimpli) {
+        this.onChangeSimpli()
+      }
+    } catch (error) { }
 
     this.setFocusDisplay()
     this.cleanModelsSegments()
   }
 
-  listCharsBase: Array<{ value: string, show: string }> = [{ value: '(', show: '(' }, { value: ')', show: ')' }, { value: '+', show: '+' }, { value: '-', show: '-' }, { value: '/', show: '/' }, { value: '*', show: '*' }, { value: '^', show: '^' }, { value: '{', show: '{' }, { value: '}', show: '}' }]
+  listCharsBase: Array<{ value: string, show: string }> = [{ value: '(', show: '(' }, { value: ')', show: ')' }, { value: '+', show: '+' }, { value: '-', show: '-' }, { value: '/', show: '/' }, { value: '*', show: '*' }, { value: '^', show: '^' }, { value: 'x', show: 'x' }, { value: 'y', show: 'y' }]
 
   listCharsAlgebra: Array<{ value: string, show: string }> = [{ value: 'sin(', show: 'Sin' }, { value: 'atan(', show: 'Atan' }, { value: 'cos(', show: 'Cos' }, { value: 'tan(', show: 'Tan' }, { value: 'sqrt(', show: 'Sqrt' }, { value: 'log(', show: 'Log' }]
 
@@ -94,8 +105,20 @@ export class CalcPage {
     }
   }
 
+  /**
+   * Redondea el resultado de la expresion
+   * @param event 
+   */
   onChangeRound(event: any) {
     this.resultRound = this.mathjs.round(this.result, parseFloat(this.modelRound)).toString();
+  }
+
+  /**
+   * Simplifica la expresion
+   * @param event 
+   */
+  onChangeSimpli(event?: any) {
+    this.resultSimpli = this.mathjs.simplify(this.display) || '';
   }
 
   /**

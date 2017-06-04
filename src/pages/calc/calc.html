@@ -59,8 +59,11 @@
 
   </ion-card>
 
+  <ion-item>
+    <ion-label> Redondear</ion-label>
+    <ion-toggle checked="false" [(ngModel)]="toggleRound"></ion-toggle>
+  </ion-item>
   <ion-card *ngIf="toggleRound">
-    <ion-card-header>Redondear</ion-card-header>
     <ion-card-content>
       <ion-label>
         <strong>
@@ -73,44 +76,56 @@
       </ion-range>
     </ion-card-content>
   </ion-card>
+
+  <ion-item>
+    <ion-label> Simplificar</ion-label>
+    <ion-toggle checked="false" [(ngModel)]="toggleSimpli"(ngModelChange)="onChangeSimpli($event)"></ion-toggle>
+  </ion-item>
+  <ion-card *ngIf="toggleSimpli">
+    <ion-card-content>
+      <ion-label>
+        <strong>
+          {{ resultSimpli }}
+        </strong>
+      </ion-label>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-item>
+    <ion-label> Raiz</ion-label>
+    <ion-toggle checked="false" [(ngModel)]="toggleSqrt"></ion-toggle>
+  </ion-item>
   <ion-card *ngIf="toggleSqrt">
-    <ion-card-header></ion-card-header>
     <ion-card-content></ion-card-content>
   </ion-card>
+
+  <ion-item>
+    <ion-label> Derivar</ion-label>
+    <ion-toggle checked="false" [(ngModel)]="toggleDeri"></ion-toggle>
+  </ion-item>
   <ion-card *ngIf="toggleDeri">
-    <ion-card-header></ion-card-header>
     <ion-card-content></ion-card-content>
   </ion-card>
+
+  <ion-item>
+    <ion-label> Logaritmo</ion-label>
+    <ion-toggle checked="false" [(ngModel)]="toggleLog"></ion-toggle>
+  </ion-item>
   <ion-card *ngIf="toggleLog">
     <ion-card-header></ion-card-header>
     <ion-card-content></ion-card-content>
   </ion-card>
 
 
-  <ion-list inset>
-    <ion-item>
-      <ion-label> Redondear</ion-label>
-      <ion-toggle checked="false" [(ngModel)]="toggleRound"></ion-toggle>
-    </ion-item>
-    <ion-item>
-      <ion-label> Raiz</ion-label>
-      <ion-toggle checked="false" [(ngModel)]="toggleSqrt"></ion-toggle>
-    </ion-item>
-    <ion-item>
-      <ion-label> Derivar</ion-label>
-      <ion-toggle checked="false" [(ngModel)]="toggleDeri"></ion-toggle>
-    </ion-item>
-    <ion-item>
-      <ion-label> Logaritmo</ion-label>
-      <ion-toggle checked="false" [(ngModel)]="toggleLog"></ion-toggle>
-    </ion-item>
-  </ion-list>
 
   <ion-fab bottom left>
-    <button ion-fab>Borrar</button>
+    <button ion-fab>Mas</button>
     <ion-fab-list side="top">
       <button ion-fab (click)="cleanDisplay()">
         <<<
+      </button>
+      <button ion-fab>
+        dx
       </button>
     </ion-fab-list>
     <ion-fab-list side="right">

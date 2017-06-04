@@ -23,4 +23,8 @@ export class MathJsProvider {
     return M.round(num, round);
   }
 
+  public simplify(expression: string) {
+    return M.simplify(expression);
+  }
+
 }

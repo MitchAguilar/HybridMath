@@ -4,10 +4,12 @@
 - [x] Evaluate and resolve expressions
 - [x] Dynamic rounding of real numbers
 - [x] Basic trigonometry
+- [x] Simplify expressions
 - [ ] Differential equations _(in progress)_
 - [ ] Graph simulation
 - [ ] Markov chain analysis
-- [ ] Unit converter _(in progress)_
+- [ ] Unit converter _(in progress)
+- [ ] Vectors analysis
 
 ## Screenshots
 <img src="./docs/resources/calc.png"/>
