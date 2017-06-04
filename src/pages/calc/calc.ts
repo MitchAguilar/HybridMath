@@ -14,6 +14,10 @@ import { MathJsProvider } from "../../providers/math-js/math-js";
 })
 export class CalcPage {
 
+  // Model options
+  resultRound: string = ''  // Muestra el resultado del redondeo
+  modelRound: string = ''  // Modelo que almacena el valor de cambio del 'ion-range'
+
   // Models segment
   modelNums: string = ''
   modelBase: string = ''
@@ -38,54 +42,9 @@ export class CalcPage {
     this.cleanModelsSegments()
   }
 
-  listCharsBase: Array<{ value: string, show: string }> = [{
-    value: '(',
-    show: '('
-  }, {
-    value: ')',
-    show: ')'
-  }, {
-    value: '+',
-    show: '+'
-  }, {
-    value: '-',
-    show: '-'
-  }, {
-    value: '/',
-    show: '/'
-  }, {
-    value: '*',
-    show: '*'
-  }, {
-    value: '^',
-    show: '^'
-  }, {
-    value: '{',
-    show: '{'
-  }, {
-    value: '}',
-    show: '}'
-  }]
+  listCharsBase: Array<{ value: string, show: string }> = [{ value: '(', show: '(' }, { value: ')', show: ')' }, { value: '+', show: '+' }, { value: '-', show: '-' }, { value: '/', show: '/' }, { value: '*', show: '*' }, { value: '^', show: '^' }, { value: '{', show: '{' }, { value: '}', show: '}' }]
 
-  listCharsAlgebra: Array<{ value: string, show: string }> = [{
-    value: 'sin(',
-    show: 'Sin'
-  }, {
-    value: 'atan(',
-    show: 'Atan'
-  }, {
-    value: 'cos(',
-    show: 'Cos'
-  }, {
-    value: 'tan(',
-    show: 'Tan'
-  }, {
-    value: 'sqrt(',
-    show: 'Sqrt'
-  }, {
-    value: 'log(',
-    show: 'Log'
-  }]
+  listCharsAlgebra: Array<{ value: string, show: string }> = [{ value: 'sin(', show: 'Sin' }, { value: 'atan(', show: 'Atan' }, { value: 'cos(', show: 'Cos' }, { value: 'tan(', show: 'Tan' }, { value: 'sqrt(', show: 'Sqrt' }, { value: 'log(', show: 'Log' }]
 
   listCharsNum: Array<{ value: string, show: string }> = [];
 
@@ -114,7 +73,9 @@ export class CalcPage {
    * Quita el ultimo caracter en el display.
    * En caso de que el contenido del display 
    * termine en algun caracter referenciado
-   * en 'listCharsAlgebra'.
+   * en '@var listCharsAlgebra' se procede a 
+   * eliminar el elemento completo,p.ej: cos
+   * 
    */
   quitLast(): void {
     let changed = false
@@ -133,6 +94,10 @@ export class CalcPage {
     }
   }
 
+  onChangeRound(event: any) {
+    this.resultRound = this.mathjs.round(this.result, parseFloat(this.modelRound)).toString();
+  }
+
   /**
    * Limplia la pantalla/display
    */
@@ -144,9 +109,9 @@ export class CalcPage {
    * Limpia los modelos de los segmentos
    */
   cleanModelsSegments() {
-      this.modelAlg = ''
-      this.modelBase = ''
-      this.modelNums = ''
+    this.modelAlg = ''
+    this.modelBase = ''
+    this.modelNums = ''
   }
 
   /**

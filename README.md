@@ -1,4 +1,7 @@
-This is a starter template for [Ionic](http://ionicframework.com/docs/) projects.
+# **HybridMath**
+
+## Screenshots
+<img src="./docs/resources/calc.png"/>
 
 ## How to use this template
 
@@ -24,3 +27,4 @@ $ ionic cordova run ios
 
 Substitute ios for android if not on a Mac.
 
+License MIT

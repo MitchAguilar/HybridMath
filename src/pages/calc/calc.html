@@ -52,19 +52,68 @@
     </ion-card-header>
 
     <ion-card-content>
-      <div>{{ result }}</div>      
+      <strong>
+        {{ result }}
+      </strong>
     </ion-card-content>
 
   </ion-card>
 
-  <ion-fab bottom right>
+  <ion-card *ngIf="toggleRound">
+    <ion-card-header>Redondear</ion-card-header>
+    <ion-card-content>
+      <ion-label>
+        <strong>
+          {{ resultRound }}
+        </strong>
+      </ion-label>
+      <ion-range min="0" max="10" step="1" snaps="true" [(ngModel)]="modelRound" (ngModelChange)="onChangeRound($event)" color="secondary">
+        <ion-label range-left>0</ion-label>
+        <ion-label range-right>10</ion-label>
+      </ion-range>
+    </ion-card-content>
+  </ion-card>
+  <ion-card *ngIf="toggleSqrt">
+    <ion-card-header></ion-card-header>
+    <ion-card-content></ion-card-content>
+  </ion-card>
+  <ion-card *ngIf="toggleDeri">
+    <ion-card-header></ion-card-header>
+    <ion-card-content></ion-card-content>
+  </ion-card>
+  <ion-card *ngIf="toggleLog">
+    <ion-card-header></ion-card-header>
+    <ion-card-content></ion-card-content>
+  </ion-card>
+
+
+  <ion-list inset>
+    <ion-item>
+      <ion-label> Redondear</ion-label>
+      <ion-toggle checked="false" [(ngModel)]="toggleRound"></ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-label> Raiz</ion-label>
+      <ion-toggle checked="false" [(ngModel)]="toggleSqrt"></ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-label> Derivar</ion-label>
+      <ion-toggle checked="false" [(ngModel)]="toggleDeri"></ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-label> Logaritmo</ion-label>
+      <ion-toggle checked="false" [(ngModel)]="toggleLog"></ion-toggle>
+    </ion-item>
+  </ion-list>
+
+  <ion-fab bottom left>
     <button ion-fab>Borrar</button>
     <ion-fab-list side="top">
       <button ion-fab (click)="cleanDisplay()">
         <<<
       </button>
     </ion-fab-list>
-    <ion-fab-list side="left">
+    <ion-fab-list side="right">
       <button ion-fab (click)="quitLast()">
         <
       </button>

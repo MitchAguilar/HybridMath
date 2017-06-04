@@ -15,7 +15,7 @@ import { CharactersPage } from "../pages/characters/characters";
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = HomePage;
+  rootPage: any = CalcPage;
 
   pages: Array<{ title: string, component: any }>;
 

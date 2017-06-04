@@ -19,4 +19,8 @@ export class MathJsProvider {
     return M.eval(expression);
   }
 
+  public round(num: number | string, round: number | string): string | number {
+    return M.round(num, round);
+  }
+
 }
