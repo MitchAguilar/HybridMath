@@ -1,5 +1,14 @@
 # **HybridMath**
 
+## Features
+- [x] Evaluate and resolve expressions
+- [x] Dynamic rounding of real numbers
+- [x] Basic trigonometry
+- [ ] Differential equations _(in progress)_
+- [ ] Graph simulation
+- [ ] Markov chain analysis
+- [ ] Unit converter _(in progress)_
+
 ## Screenshots
 <img src="./docs/resources/calc.png"/>
 
@@ -11,20 +20,16 @@ To use this template, either create a new ionic project using the ionic node.js 
 
 ### With the Ionic CLI:
 
-Take the name after `ionic2-starter-`, and that is the name of the template to be used when using the `ionic start` command below:
-
 ```bash
 $ sudo npm install -g ionic cordova
-$ ionic start mySideMenu sidemenu
+$ git clone https://github.com/juliandavidmr/HybridMath
 ```
 
-Then, to run it, cd into `mySideMenu` and run:
+Then, to run it, cd into `HybridMath` and run:
 
 ```bash
-$ ionic cordova platform add ios
-$ ionic cordova run ios
+$ ionic serve
 ```
 
-Substitute ios for android if not on a Mac.
 
-License MIT
+**License MIT**
