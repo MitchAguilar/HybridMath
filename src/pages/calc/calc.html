@@ -78,8 +78,8 @@
   </ion-card>
 
   <ion-item>
-    <ion-label> Simplificar</ion-label>
-    <ion-toggle checked="false" [(ngModel)]="toggleSimpli"(ngModelChange)="onChangeSimpli($event)"></ion-toggle>
+    <ion-label>Simplificar</ion-label>
+    <ion-toggle checked="false" [(ngModel)]="toggleSimpli" (ngModelChange)="onChangeSimpli($event)"></ion-toggle>
   </ion-item>
   <ion-card *ngIf="toggleSimpli">
     <ion-card-content>
@@ -92,46 +92,34 @@
   </ion-card>
 
   <ion-item>
-    <ion-label> Raiz</ion-label>
-    <ion-toggle checked="false" [(ngModel)]="toggleSqrt"></ion-toggle>
-  </ion-item>
-  <ion-card *ngIf="toggleSqrt">
-    <ion-card-content></ion-card-content>
-  </ion-card>
-
-  <ion-item>
-    <ion-label> Derivar</ion-label>
-    <ion-toggle checked="false" [(ngModel)]="toggleDeri"></ion-toggle>
+    <ion-label>Derivar</ion-label>
+    <ion-toggle checked="false" [(ngModel)]="toggleDeri" (ngModelChange)="onChangeDeri($event)"></ion-toggle>
   </ion-item>
   <ion-card *ngIf="toggleDeri">
-    <ion-card-content></ion-card-content>
+    <ion-card-content>
+      <ion-item>
+        <ion-label>Derivar respecto a</ion-label>
+        <ion-select [(ngModel)]="modelVariableDerivar" (ngModelChange)="derivar()">
+          <ion-option *ngFor="let item of variables" [value]="item">{{ item }}</ion-option>
+        </ion-select>
+      </ion-item>
+
+      Derivar
+      <ion-badge>{{ display }}</ion-badge> con respecto a
+      <ion-badge>{{ modelVariableDerivar }}</ion-badge>
+      =
+      <ion-chip>
+        <ion-label>{{ resultDeri }}</ion-label>
+      </ion-chip>
+    </ion-card-content>
   </ion-card>
 
   <ion-item>
-    <ion-label> Logaritmo</ion-label>
+    <ion-label>Logaritmo</ion-label>
     <ion-toggle checked="false" [(ngModel)]="toggleLog"></ion-toggle>
   </ion-item>
   <ion-card *ngIf="toggleLog">
-    <ion-card-header></ion-card-header>
     <ion-card-content></ion-card-content>
   </ion-card>
 
-
-
-  <ion-fab bottom left>
-    <button ion-fab>Mas</button>
-    <ion-fab-list side="top">
-      <button ion-fab (click)="cleanDisplay()">
-        <<<
-      </button>
-      <button ion-fab>
-        dx
-      </button>
-    </ion-fab-list>
-    <ion-fab-list side="right">
-      <button ion-fab (click)="quitLast()">
-        <
-      </button>
-    </ion-fab-list>
-  </ion-fab>
 </ion-content>

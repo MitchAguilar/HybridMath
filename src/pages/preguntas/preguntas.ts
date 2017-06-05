@@ -2,22 +2,22 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
 /**
- * Generated class for the CharactersPage page.
+ * Generated class for the PreguntasPage page.
  *
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
 @Component({
-  selector: 'page-characters',
-  templateUrl: 'characters.html',
+  selector: 'page-preguntas',
+  templateUrl: 'preguntas.html',
 })
-export class CharactersPage {
+export class PreguntasPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad CharactersPage');
+    console.log('ionViewDidLoad PreguntasPage');
   }
 
 }

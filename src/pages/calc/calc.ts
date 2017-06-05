@@ -20,6 +20,11 @@ export class CalcPage {
   //
   resultSimpli: string = '' // Muestra la ecuacion simplificada
   toggleSimpli: boolean = false
+  //
+  toggleDeri: boolean = false
+  resultDeri: string = ''
+  modelVariableDerivar: string = ''
+  variables: Array<string> = []
 
   // Models segment
   modelNums: string = ''
@@ -42,12 +47,15 @@ export class CalcPage {
       this.result = this.mathjs.eval(this.display) as string;
     } catch (e) { }
 
-    try {
-      // Simplifica la expression
-      if (this.toggleSimpli) {
-        this.onChangeSimpli()
-      }
-    } catch (error) { }
+    // Simplifica la expression
+    if (this.toggleSimpli) {
+      this.onChangeSimpli()
+    }
+
+    // Deriva la expression
+    if (this.toggleDeri) {
+      this.onChangeDeri();
+    }
 
     this.setFocusDisplay()
     this.cleanModelsSegments()
@@ -86,7 +94,6 @@ export class CalcPage {
    * termine en algun caracter referenciado
    * en '@var listCharsAlgebra' se procede a 
    * eliminar el elemento completo,p.ej: cos
-   * 
    */
   quitLast(): void {
     let changed = false
@@ -100,16 +107,30 @@ export class CalcPage {
 
     if (!changed) {
       this.display = this.display.length > 0 ?
-        this.display.substring(0, this.display.length - 1)
-        : ''
+        this.display.substring(0, this.display.length - 1) : ''
     }
+  }
+
+  /**
+   * Obtiene todas las posibles variables 
+   * contenidas en la expresion/display.
+   */
+  public getPosiblesVariables(): Array<string> {
+    let matches = [];
+    let variables = [];
+    let re = /([a-z])/ig;
+
+    while ((matches = re.exec(this.display)) !== null) {
+      variables.push(matches[0])
+    }
+    return variables;
   }
 
   /**
    * Redondea el resultado de la expresion
    * @param event 
    */
-  onChangeRound(event: any) {
+  onChangeRound(event?: any) {
     this.resultRound = this.mathjs.round(this.result, parseFloat(this.modelRound)).toString();
   }
 
@@ -118,7 +139,36 @@ export class CalcPage {
    * @param event 
    */
   onChangeSimpli(event?: any) {
-    this.resultSimpli = this.mathjs.simplify(this.display) || '';
+    try {
+      this.resultSimpli = this.mathjs.simplify(this.display) || '';
+    } catch (error) { }
+  }
+
+  /**
+   * Detecta cambios en el modelo de derivada.
+   * Reconoce las variables escritas en la expresion
+   * y las asigna a un vector @var variables .
+   * @param event 
+   */
+  onChangeDeri(event?: any) {
+    this.variables = [];
+    (this.getPosiblesVariables() || []).map(varr => {
+      if (this.variables.indexOf(varr) == -1) { // filtar repetidos
+        this.variables.push(varr);
+      }
+    });
+    this.derivar()
+  }
+
+  /**
+   * Derivar la expresion
+   */
+  derivar() {
+    try {
+      this.resultDeri = this.mathjs.derivative(this.display, this.modelVariableDerivar) || '';
+    } catch (error) {
+      console.log("Error al derivar", error);
+    }
   }
 
   /**

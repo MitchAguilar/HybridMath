@@ -5,7 +5,7 @@
 - [x] Dynamic rounding of real numbers
 - [x] Basic trigonometry
 - [x] Simplify expressions
-- [ ] Differential equations _(in progress)_
+- [x] Differential equations
 - [ ] Graph simulation
 - [ ] Markov chain analysis
 - [ ] Unit converter _(in progress)

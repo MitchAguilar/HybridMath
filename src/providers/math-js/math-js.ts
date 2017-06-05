@@ -27,4 +27,8 @@ export class MathJsProvider {
     return M.simplify(expression);
   }
 
+  public derivative(expression: string, toDerivate: string) {
+    return M.derivative(expression, toDerivate);
+  }
+
 }

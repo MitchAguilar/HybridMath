@@ -3,11 +3,11 @@ import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
 import { AlgebraPage } from "../pages/algebra/algebra";
 import { CalcPage } from "../pages/calc/calc";
 import { CharactersPage } from "../pages/characters/characters";
+import { AboutPage } from "../pages/about/about";
+import { MatrixPage } from "../pages/matrix/matrix";
 
 @Component({
   templateUrl: 'app.html'
@@ -24,11 +24,11 @@ export class MyApp {
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Algebra', component: AlgebraPage },
       { title: 'Cientifica', component: CalcPage },
+      { title: 'Matrix', component: MatrixPage },
+      { title: 'Algebra', component: AlgebraPage },
       { title: 'Caracteres', component: CharactersPage },
-      { title: 'List', component: ListPage },
-      { title: 'Home', component: HomePage },
+      { title: 'Acerca de', component: AboutPage }
     ];
 
   }

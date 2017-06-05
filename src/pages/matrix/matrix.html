@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-navbar color="grade">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Matrix</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only color="royal">
+        <ion-icon name="person-add"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <a *ngFor="let item of vector">{{item}}</a>
+    </ion-row>
+    <ion-row>
+      <ion-col col-9>
+        <ion-textarea placeholder="Matrix 3x3:  2, 3, 4, 1, 8, 6" [(ngModel)]="display" autofocus></ion-textarea>
+      </ion-col>
+      <ion-col col-3>
+        <button ion-button>+ Valor</button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-item>
+        <ion-label>Dimensión</ion-label>
+        <ion-select [(ngModel)]="modelDimen" interface="action-sheet" cancelText="Cancelar">
+          <ion-option value="2x2">2x2</ion-option>
+          <ion-option value="3x3" checked="true">3x3</ion-option>
+          <ion-option value="4x4">4x4</ion-option>
+          <ion-option value="5x5">5x5</ion-option>
+          <ion-option value="6x6">6x6</ion-option>
+          <ion-option value="7x7">7x7</ion-option>
+        </ion-select>
+      </ion-item>
+    </ion-row>
+  </ion-grid>
+</ion-content>
